@@ -49,46 +49,140 @@ rfkill unblock wlan
 
 Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](files/auth.pcap) avec Wireshark et fournir des captures d’écran indiquant dans chaque capture les données demandées.
 
+Processus d'authentification vu en cours :
+
+![](./img/auth_th.png)
+
+
+
+Échange capturé entre le client (30:74:96:70:df:32) et l'AP (dc:a5:f4:60:bf:50) dans la capture Wireshark :
+
+<img src='./img/filters.png' />
+
+Notes : Nous avons utiliser le filtre `wlan.sa ==30:74:96:70:df:32 || wlan.da ==30:74:96:70:df:32` afin de pouvoir isoler la conversation entre le client et le serveur/AP.
+
 - Comparer [la capture](files/auth.pcap) au processus d’authentification donné en théorie (n’oubliez pas les captures d'écran pour illustrer vos comparaisons !). En particulier, identifier les étapes suivantes :
+	
 	- Requête et réponse d’authentification système ouvert
- 	- Requête et réponse d’association (ou reassociation)
-	- Négociation de la méthode d’authentification entreprise
-	- Phase d’initiation. Arrivez-vous à voir l’identité du client ?
-	- Phase hello :
-		- Version TLS
-		- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
-		- Nonces
-		- Session ID
-	- Phase de transmission de certificats
-	 	- Echanges des certificats
-		- Change cipher spec
-	- Authentification interne et transmission de la clé WPA (échange chiffré, vu comme « Application data »)
-	- 4-way handshake
+	  Requête | Réponse :
+	  <img src='./img/open_auth_req.png' width=350/><img src='./img/open_auth_resp.png' width=350/>
+	  
+	- Requête et réponse d’association (ou reassociation)
+       Requête | Réponse :
+        	  <img src='./img/reassoc_req.png' width=350/><img src='./img/reassoc_resp.png' width=350/>
+  
+     - Négociation de la méthode d’authentification entreprise
+         Le serveur propose d'utiliser EAP-TLS :
+         <img src='./img/auth_meth_nego_1.png' />
+         
+         
+         
+         Le client répond qu'il préfère PEAP :
+         <img src='./img/auth_meth_nego_2.png' />
+         
+  
+       
+         Le serveur propose donc d'utiliser PEAP :
+         <img src='./img/auth_meth_nego_3.png' />
+         
+         
+         
+       - Phase d’initiation. Arrivez-vous à voir l’identité du client ? Oui, le login est ** Joel Gonin**
+         Identity Request (Server -> Client) || Identity Response (Client -> Server)  :
+         
+         <img src='./img/identity_req.png' width=350/><img src='./img/identity_resp.png' width=350/>
+         
+         
+         
+       - Phase hello :
+       	- Version TLS
+       	  <img src='./img/version_TLS.png' />
+       	
+       	
+       	
+       	- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
+       	  Ciphersuites proposées par le client :
+       	  <img src='./img/ciphersuites_req.png' />
+       	  
+       	  
+       	  
+       	  Ciphersuite sélectionnée par le serveur :
+       	  <img src='./img/ciphersuite_resp.png' />
+       	  
+       	- Nonces
+       	  Nonce client :
+       	  <img src='./img/nonce_client.png' />
+       	  
+       	  
+       	  
+       	- Nonce serveur :
+       	  <img src='./img/nonce_server.png' />
+       	  
+       	  
+       	  
+       	- Session ID
+       	  Session ID client :
+       	  <img src='./img/sess_id_client.png' />
+       	  
+       	  
+       	  
+  	- Session ID serveur :
+     	  <img src='./img/sess_id_server.png' />
+       	  
+       	  
+  	
+     - Phase de transmission de certificats
+  
+       - Echanges des certificats
+                Transmission certificat server -> client :
+          	  <img src='./img/certifs_from_server.png' />
+     
+         
+     
+              - Change cipher spec
+                <img src='./img/change_cipher_spec.png' />
+       
+              
+       
+       - Authentification interne et transmission de la clé WPA (échange chiffré, vu comme « Application data »)
+         <img src='./img/echange_chiffre.png' />
+         
+         
+         
+       - 4-way handshake
+         <img src='./img/4way_hs.png' />
+
+
 
 ### Répondez aux questions suivantes :
- 
+
 > **_Question :_** Quelle ou quelles méthode(s) d’authentification est/sont proposé(s) au client ?
 > 
-> **_Réponse :_** 
+> **_Réponse :_** EAP-TLS
 
 ---
 
 > **_Question:_** Quelle méthode d’authentification est finalement utilisée ?
 > 
-> **_Réponse:_** 
+> **_Réponse:_** EAP-PEAP car le client le préfère (desired).
 
 ---
 
 > **_Question:_** Lors de l’échange de certificats entre le serveur d’authentification et le client :
-> 
+>
 > - a. Le serveur envoie-t-il un certificat au client ? Pourquoi oui ou non ?
-> 
-> **_Réponse:_**
-> 
+>
+>   **_Réponse:_** 
+>
+>   Oui, pour s'authentifier au près du client et pour permettre de chiffrer les communications.
+>
+>   
+>
 > - b. Le client envoie-t-il un certificat au serveur ? Pourquoi oui ou non ?
-> 
-> **_Réponse:_**
-> 
+>
+>   **_Réponse:_**
+>
+>   Non, car l'authentification se fait pour la connaissance du login/password du compte client.
 
 ---
 
