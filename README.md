@@ -66,12 +66,11 @@ Notes : Nous avons utiliser le filtre `wlan.sa ==30:74:96:70:df:32 || wlan.da ==
 	- Requête et réponse d’authentification système ouvert<br/>
 	  Requête | Réponse :<br/>
 	  
-	  <img src='./img/open_auth_req.png' width=350/><img src='./img/open_auth_resp.png' width=350/>
+	<img src='./img/open_auth_req.png' width=350/><img src='./img/open_auth_resp.png' width=350/>
 	  
 	- Requête et réponse d’association (ou reassociation)<br/>
 	  Requête | Réponse :<br/>
-       
-       	  <img src='./img/reassoc_req.png' width=350/><img src='./img/reassoc_resp.png' width=350/>
+	  <img src='./img/reassoc_req.png' width=350/><img src='./img/reassoc_resp.png' width=350/>
   
      - Négociation de la méthode d’authentification entreprise<br/>
          Le serveur propose d'utiliser EAP-TLS :<br/>
@@ -108,27 +107,27 @@ Notes : Nous avons utiliser le filtre `wlan.sa ==30:74:96:70:df:32 || wlan.da ==
        	  <img src='./img/ciphersuites_req.png' /><br/><br/>
        	  
        	         	  
-       	  Ciphersuite sélectionnée par le serveur :<br/>
-       	  <img src='./img/ciphersuite_resp.png' /><br/><br/>
+	Ciphersuite sélectionnée par le serveur :<br/>
+     	<img src='./img/ciphersuite_resp.png' /><br/><br/>
        	  
-       	- Nonces<br/>
+	- Nonces<br/>
        	  Nonce client :<br/>
        	  <img src='./img/nonce_client.png' /><br/><br/>
        	  
        	  
        	  
-       	- Nonce serveur :<br/>
+	- Nonce serveur :<br/>
        	  <img src='./img/nonce_server.png' /><br/><br/>
        	  
        	  
        	  
-       	- Session ID<br/>
+	- Session ID<br/>
        	  Session ID client :<br/>
        	  <img src='./img/sess_id_client.png' /><br/><br/>
        	  
        	  
        	  
-  	- Session ID serveur :<br/>
+	- Session ID serveur :<br/>
      	  <img src='./img/sess_id_server.png' /><br/><br/>
        	  
        	  
