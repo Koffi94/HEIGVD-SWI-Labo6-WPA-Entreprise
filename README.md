@@ -63,94 +63,96 @@ Notes : Nous avons utiliser le filtre `wlan.sa ==30:74:96:70:df:32 || wlan.da ==
 
 - Comparer [la capture](files/auth.pcap) au processus d’authentification donné en théorie (n’oubliez pas les captures d'écran pour illustrer vos comparaisons !). En particulier, identifier les étapes suivantes :
 	
-	- Requête et réponse d’authentification système ouvert
-	  Requête | Réponse :
+	- Requête et réponse d’authentification système ouvert<br/>
+	  Requête | Réponse :<br/>
+	  
 	  <img src='./img/open_auth_req.png' width=350/><img src='./img/open_auth_resp.png' width=350/>
 	  
-	- Requête et réponse d’association (ou reassociation)
-       Requête | Réponse :
-        	  <img src='./img/reassoc_req.png' width=350/><img src='./img/reassoc_resp.png' width=350/>
-  
-     - Négociation de la méthode d’authentification entreprise
-         Le serveur propose d'utiliser EAP-TLS :
-         <img src='./img/auth_meth_nego_1.png' />
-         
-         
-         
-         Le client répond qu'il préfère PEAP :
-         <img src='./img/auth_meth_nego_2.png' />
-         
-  
+	- Requête et réponse d’association (ou reassociation)<br/>
+	  Requête | Réponse :<br/>
        
-         Le serveur propose donc d'utiliser PEAP :
-         <img src='./img/auth_meth_nego_3.png' />
+       	  <img src='./img/reassoc_req.png' width=350/><img src='./img/reassoc_resp.png' width=350/>
+  
+     - Négociation de la méthode d’authentification entreprise<br/>
+         Le serveur propose d'utiliser EAP-TLS :<br/>
+	 
+         <img src='./img/auth_meth_nego_1.png' /><br/><br/>        
+         
+         
+         Le client répond qu'il préfère PEAP :<br/>
+	 
+         <img src='./img/auth_meth_nego_2.png' /><br/><br/>
+         
+       
+         Le serveur propose donc d'utiliser PEAP :<br/>
+	 
+         <img src='./img/auth_meth_nego_3.png' /><br/><br/>
          
          
          
-       - Phase d’initiation. Arrivez-vous à voir l’identité du client ? Oui, le login est ** Joel Gonin**
-         Identity Request (Server -> Client) || Identity Response (Client -> Server)  :
+     - Phase d’initiation. Arrivez-vous à voir l’identité du client ? Oui, le login est **Joel Gonin**<br/>
+       
+         Identity Request (Server -> Client) || Identity Response (Client -> Server) :<br/>
          
-         <img src='./img/identity_req.png' width=350/><img src='./img/identity_resp.png' width=350/>
+         <img src='./img/identity_req.png' width=350/><img src='./img/identity_resp.png' width=350/><br/><br/>
          
          
          
-       - Phase hello :
-       	- Version TLS
-       	  <img src='./img/version_TLS.png' />
+     	- Phase hello :
+       	- Version TLS<br/>
+       	  <img src='./img/version_TLS.png' /><br/><br/>
        	
-       	
-       	
-       	- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
-       	  Ciphersuites proposées par le client :
-       	  <img src='./img/ciphersuites_req.png' />
+             	
+	- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
+       	  Ciphersuites proposées par le client :<br/>
+       	  <img src='./img/ciphersuites_req.png' /><br/><br/>
+       	  
+       	         	  
+       	  Ciphersuite sélectionnée par le serveur :<br/>
+       	  <img src='./img/ciphersuite_resp.png' /><br/><br/>
+       	  
+       	- Nonces<br/>
+       	  Nonce client :<br/>
+       	  <img src='./img/nonce_client.png' /><br/><br/>
        	  
        	  
        	  
-       	  Ciphersuite sélectionnée par le serveur :
-       	  <img src='./img/ciphersuite_resp.png' />
-       	  
-       	- Nonces
-       	  Nonce client :
-       	  <img src='./img/nonce_client.png' />
+       	- Nonce serveur :<br/>
+       	  <img src='./img/nonce_server.png' /><br/><br/>
        	  
        	  
        	  
-       	- Nonce serveur :
-       	  <img src='./img/nonce_server.png' />
+       	- Session ID<br/>
+       	  Session ID client :<br/>
+       	  <img src='./img/sess_id_client.png' /><br/><br/>
        	  
        	  
        	  
-       	- Session ID
-       	  Session ID client :
-       	  <img src='./img/sess_id_client.png' />
-       	  
-       	  
-       	  
-  	- Session ID serveur :
-     	  <img src='./img/sess_id_server.png' />
+  	- Session ID serveur :<br/>
+     	  <img src='./img/sess_id_server.png' /><br/><br/>
        	  
        	  
   	
      - Phase de transmission de certificats
   
-       - Echanges des certificats
-                Transmission certificat server -> client :
-          	  <img src='./img/certifs_from_server.png' />
+     	- Echanges des certificats<br/>
+		Transmission certificat server -> client :<br/>
+		<img src='./img/certifs_from_server.png' /><br/><br/>
      
          
      
-              - Change cipher spec
-                <img src='./img/change_cipher_spec.png' />
+      	- Change cipher spec<br/>
+                <img src='./img/change_cipher_spec.png' /><br/><br/>
        
               
        
-       - Authentification interne et transmission de la clé WPA (échange chiffré, vu comme « Application data »)
-         <img src='./img/echange_chiffre.png' />
+      	- Authentification interne et transmission de la clé WPA (échange chiffré, vu comme « Application data »)<br/>
+         <img src='./img/echange_chiffre.png' /><br/><br/>
          
          
          
-       - 4-way handshake
-         <img src='./img/4way_hs.png' />
+     	- 4-way handshake<br/>
+         <img src='./img/4way_hs.png' /><br/><br/>
 
 
 
