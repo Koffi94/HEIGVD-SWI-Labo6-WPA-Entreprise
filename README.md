@@ -175,7 +175,7 @@ Notes : Nous avons utiliser le filtre `wlan.sa ==30:74:96:70:df:32 || wlan.da ==
 >
 >   **_Réponse:_** 
 >
->   Oui, pour s'authentifier au près du client et pour permettre de chiffrer les communications.
+>   Oui, pour s'authentifier auprès du client et pour permettre de chiffrer les communications.
 >
 >   
 >
